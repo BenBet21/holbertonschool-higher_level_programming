@@ -5,8 +5,7 @@ def square_matrix_simple(matrix=[]):
     for lines in matrix:
         new_line = []
         for value in lines:
-            square_value = value **2
+            square_value = value ** 2
             new_line.append(square_value)
         square.append(new_line)
     return square
-    
