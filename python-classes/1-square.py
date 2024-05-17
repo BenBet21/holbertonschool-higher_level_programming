@@ -6,4 +6,4 @@ class Square:
     '''this is a class square'''
     def __init__(self, size):
         '''this is the constructeur'''
-        self.__size = size
+        self.size = size
