@@ -1,6 +1,4 @@
 import unittest
-from 6-max_integer import max_integer
-
 
 class TestMaxInteger(unittest.TestCase):
     """Define unit tests for the max_integer function"""
