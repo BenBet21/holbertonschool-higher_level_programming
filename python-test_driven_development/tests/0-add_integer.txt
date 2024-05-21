@@ -1,5 +1,4 @@
 >>> add_integer = __import__('0-add_integer').add_integer
->>> import math
 >>> add_integer(1, 2)
 3
 
@@ -27,7 +26,12 @@ Traceback (most recent call last):
     ...
 TypeError: a must be an integer
 
->>> add_integer(float(math.inf), 1)
+>>> add_integer(float('inf'), 1)
+Traceback (most recent call last):
+    ...
+OverflowError: cannot convert float infinity to integer
+
+>>> add_integer(1, float('inf'))
 Traceback (most recent call last):
     ...
 OverflowError: cannot convert float infinity to integer
