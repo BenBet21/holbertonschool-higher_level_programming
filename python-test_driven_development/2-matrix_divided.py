@@ -25,6 +25,3 @@ must have the same size")
         raise ZeroDivisionError("division by zero")
 
     return [[round(element / div, 2) for element in row] for row in matrix]
-
-matrix = [[3, "9"], [15, 3]]
-print(matrix_divided(matrix, 3))
