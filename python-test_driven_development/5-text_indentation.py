@@ -1,9 +1,11 @@
 #!/usr/bin/python3
-"""this is a module that prints a text with 2 new lines after each of these characters: ., ? and :"""
+"""this is a module that prints a text with 2 new \
+lines after each of these characters: ., ? and :"""
 
 
 def text_indentation(text):
-    """this function prints a text with 2 new lines after each of these characters: ., ? and :"""
+    """this function prints a text with 2 new lines \
+after each of these characters: ., ? and :"""
 
     if not isinstance(text, str):
         raise TypeError("text must be a string")
