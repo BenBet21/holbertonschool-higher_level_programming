@@ -5,8 +5,10 @@
 def matrix_divided(matrix, div):
     """this function divide a matrix by an integer"""
 
-    if not isinstance(matrix, list):
-        raise TypeError("matrix must be a matrix \
+    for row in matrix:
+        for nb in row:
+            if not isinstance(nb, (int, float)):
+                raise TypeError("matrix must be a matrix \
 (list of lists) of integers/floats")
 
     row_length = None
@@ -23,3 +25,6 @@ must have the same size")
         raise ZeroDivisionError("division by zero")
 
     return [[round(element / div, 2) for element in row] for row in matrix]
+
+matrix = [[3, "9"], [15, 3]]
+print(matrix_divided(matrix, 3))
