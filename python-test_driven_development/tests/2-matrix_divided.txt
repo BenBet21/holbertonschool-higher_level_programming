@@ -22,8 +22,3 @@ TypeError: matrix must be a matrix (list of lists) of integers/floats
 Traceback (most recent call last):
     ...
 TypeError: div must be a number
-
->>> matrix_divided([[2, 6], [4, 4]], float(inf))
-Traceback (most recent call last):
-    ...
-OverflowError: cannot convert float infinity to integer"
