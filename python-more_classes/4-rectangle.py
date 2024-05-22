@@ -51,8 +51,7 @@ class Rectangle:
         for i in range(self.height):
             rect_lines.append("#" * self.width)
         return "\n".join(rect_lines)
-    
+
     def __repr__(self):
         '''return a string that represents the rectangle'''
-        return("Rectangle {}, {}".format(self.width, self.height))
-       
+        return ("Rectangle {}, {}".format(self.width, self.height))
