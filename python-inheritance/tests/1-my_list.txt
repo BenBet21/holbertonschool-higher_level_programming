@@ -11,12 +11,38 @@ True
 False
 
 >>> ma_list.append(1)
-1
+>>> _ = ma_list.print_sorted()
+[1]
 
+>>> ma_list = MyList()
+>>> ma_list.append(1)
+>>> ma_list.append(4)
+>>> ma_list.append(6)
+>>> ma_list.append(5)
+>>> _ = ma_list.print_sorted()
+[1, 4, 5, 6]
 
-check append()
-check print_sorted() with sorted append
-check print_sorted() with not sorted append
-check print_sorted() with no sorted append with negative number
-check print_sorted() with empty list
-check print_sorted() returns a new list
+>>> ma_list = MyList()
+>>> ma_list.append(1)
+>>> ma_list.append(4)
+>>> ma_list.append(5)
+>>> ma_list.append(6)
+>>> _ = ma_list.print_sorted()
+[1, 4, 5, 6]
+
+>>> ma_list = MyList()
+>>> ma_list.append(-1)
+>>> ma_list.append(4)
+>>> ma_list.append(-6)
+>>> ma_list.append(5)
+>>> _ = ma_list.print_sorted()
+[-6, -1, 4, 5]
+
+>>> empty_list = MyList()
+>>> _ = empty_list.print_sorted()
+[]
+
+>>> returned_list = empty_list.print_sorted()
+[]
+>>> isinstance(returned_list, list)
+True
