@@ -17,6 +17,8 @@ Testing with negative value
 
 >>> print(BaseGeometry.integer_validator(BaseGeometry, "a", -1))
 Traceback (most recent call last):
-    ...
-raise ValueError(f"{name} must be greater than 0")
+  File "/root/holbertonschool-higher_level_programming-1/python-inheritance/7-base_geometry.py", line 21, in <module>
+    print(BaseGeometry.integer_validator(BaseGeometry, "a", -1))
+  File "/root/holbertonschool-higher_level_programming-1/python-inheritance/7-base_geometry.py", line 16, in integer_validator
+    raise ValueError(f"{name} must be greater than 0")
 ValueError: a must be greater than 0
