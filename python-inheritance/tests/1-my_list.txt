@@ -10,7 +10,9 @@ True
 >>> print("__str__" in MyList.__dict__)
 False
 
->>> 
+>>> ma_list.append(1)
+1
+
 
 check append()
 check print_sorted() with sorted append
