@@ -23,7 +23,7 @@ class Circle(Shape):
 
     def __init__(self, radius):
         '''this is the constructeur'''
-        self.radius = radius
+        self.radius = abs(radius)
 
     def area(self):
         '''this is public method to return circle area'''
