@@ -4,6 +4,6 @@
 import json
 
 
-def from_json_string(my_str):
+def to_json_string(my_str):
     """4. From JSON string to Object"""
     return json.loads(my_str)
