@@ -23,9 +23,9 @@ def deserialize_from_xml(filename):
     dictionary = {}
     for child in root:
         text = child.text
-        if text:
+        try:
             dictionary[child.tag] = int(text)
-        else:
+        except ValueError:
             try:
                 dictionary[child.tag] = float(text)
             except ValueError:
