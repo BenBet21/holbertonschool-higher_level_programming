@@ -14,7 +14,7 @@ from JSONPlaceholder"""
     if response.status_code == 200:
         posts = response.json()
         for post in posts:
-            print(post['titles'])
+            print(post)
 
 
 def fetch_and_save_posts():
