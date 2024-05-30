@@ -24,9 +24,11 @@ JSONPlaceholder and save to file."""
     url = "https://jsonplaceholder.typicode.com/posts"
     response = requests.get(url)
     if response.status_code == 200:
-        posts = response.json()
+        posts = response.json()        
+        for post in posts:
+            data = [{"id" : post["id"], "title" : post["title"], "body" : post["body"]}]
         with open("posts.csv", "w", newline="") as file:
-            writer = csv.writer(file)
-            for post in posts:
-                writer.writerow([post["userId"], post["id"],
-                                post["title"], post["body"]])
+            fieldnames = ["id", "title", "body"]
+            writer = csv.DictWriter(file, fieldnames=fieldnames)
+            writer.writeheader()
+            writer.writerows(data)
