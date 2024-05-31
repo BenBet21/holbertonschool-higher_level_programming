@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
-"""Module to fetches all post from JSONPlaceholder API."""
+'''module of http server'''
 import http.server
 import socketserver
 import json
 
 
-class HttpServer(http.server.BaseHTTPRequestHandler):
-    """Class to handle HTTP requests."""
+class HTTPRequestHandler(http.server.BaseHTTPRequestHandler):
+    '''subclasses of http.server.BaseHTTPRequestHandler'''
 
     def do_GET(self):
-        """Handle GET request."""
+        '''do_get method'''
         if self.path == '/':
             self.send_response(200)
             self.send_header('Content-type', 'text/plain')
@@ -18,20 +18,20 @@ class HttpServer(http.server.BaseHTTPRequestHandler):
 
         elif self.path == '/data':
             self.send_response(200)
-            self.send_header("Content-type", "application/json")
+            self.send_header('Content-type', 'application/json')
             self.end_headers()
             data = {"name": "John", "age": 30, "city": "New York"}
             self.wfile.write(json.dumps(data).encode('utf-8'))
 
         elif self.path == '/status':
             self.send_response(200)
-            self.send_header("Content-type", "text/plain")
+            self.send_header('Content-type', 'text/plain')
             self.end_headers()
-            self.wfile.write(b"OK")
+            self.wfile.write(b'OK')
 
         elif self.path == '/info':
             self.send_response(200)
-            self.send_header("Content-type", "application/json")
+            self.send_header('Content-type', 'application/json')
             self.end_headers()
             info = {
                 "version": "1.0",
@@ -44,11 +44,11 @@ class HttpServer(http.server.BaseHTTPRequestHandler):
             self.send_response(404)
             self.send_header('Content-type', 'text/plain')
             self.end_headers()
-            self.wfile.write(b"404 not found")
+            self.wfile.write(b'404 Not Found')
 
 
 PORT = 8000
 
-with socketserver.TCPServer(("", PORT), HttpServer) as httpd:
-    print("serving at port", PORT)
+with socketserver.TCPServer(("", PORT), HTTPRequestHandler) as httpd:
+    print(f"Serving on port {PORT}")
     httpd.serve_forever()
