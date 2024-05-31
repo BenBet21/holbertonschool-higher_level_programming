@@ -37,23 +37,20 @@ def get_user(username):
         ])
         return Response(json.dumps(ordered_user), mimetype='application/json')
     else:
-        return jsonify({"error": "User not found"})
+        return jsonify({"error": "User not found"}), 400
 
 
 @app.route('/add_user', methods=['POST'])
 def add_user():
     data = request.get_json()
     if not data:
-        return jsonify({"error": "No JSON data provided"})
+        return jsonify({"error": "No JSON data provided"}), 404
 
     username = data.get('username')
     if not username:
-        return jsonify({"error": "User not found"})
-
-    if username in users:
-        return jsonify({"error": "Username already exists"})
-
-    users[username] = {
+        return jsonify({"error": "User not found"}), 404
+ 
+    users = {
         "username": data.get('username', ''),
         "name": data.get('name', ''),
         "age": data.get('age', 0),
