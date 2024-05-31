@@ -4,7 +4,6 @@ from flask import Flask, jsonify, request
 from flask_httpauth import HTTPBasicAuth
 from werkzeug.security import generate_password_hash, check_password_hash
 import jwt
-import datetime
 from functools import wraps
 
 
@@ -14,9 +13,17 @@ app.config['SECRET_KEY'] = SECRET_KEY
 auth = HTTPBasicAuth()
 
 users = {
-      "user1": {"username": "Benoit", "password": "<love>", "role": "user"},
-      "admin1": {"username": "Ben", "password": "<war>", "role": "admin"}
-  }
+      "user1": {
+        "username": "Benoit",
+        "password": generate_password_hash("passworduser"),
+        "role": "user"
+        },
+      "admin1": {
+        "username": "Ben",
+        "password": generate_password_hash("passwordadmin"),
+        "role": "admin"
+        }
+        }
 
 
 @auth.verify_password
@@ -78,8 +85,8 @@ def role_required(required_role):
         @wraps(f)
         def decorated_function(current_user, current_role, *args, **kwargs):
             if current_role != required_role:
-                return jsonify({'message':
-                                'Access denied: insufficient permissions'}),
+                return jsonify({
+                    'message': 'Access denied: insufficient permissions'}), 403
             return f(current_user, current_role, *args, **kwargs)
         return decorated_function
     return decorator
