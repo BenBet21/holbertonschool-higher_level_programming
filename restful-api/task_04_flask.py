@@ -1,20 +1,38 @@
 #!/usr/bin/env python3
 """Develop a Simple API using Python with Flask"""
 from flask import Flask
-from flask import jsonify
-from flask import request
-
+from flask import jsonify, request, Response
+from collections import OrderedDict
+import json
 
 app = Flask(__name__)
 
-users = {"jane": {"name": "Jane", "age": 28, "city": "Los Angeles"},
-        "john": {"name": "John", "age": 30, "city": "New York"},
-        "james": {"name": "James", "age": 25, "city": "Chicago"}}
-         
+users = {
+    "jane": {
+        "username": "Jane",
+        "name": "Jane",
+        "age": 28,
+        "city": "Los Angeles"
+    },
+    "john": {
+        "username": "John",
+        "name": "John",
+        "age": 30,
+        "city": "New York"
+    },
+    "james": {
+        "username": "James",
+        "name": "James",
+        "age": 25,
+        "city": "Chicago"
+    }
+}
+
 
 @app.route('/')
 def home():
     return "Welcome to the Flask API!"
+
 
 @app.route('/status')
 def status():
@@ -26,14 +44,22 @@ def get_usernames():
     usernames = list(users.keys())
     return jsonify(usernames)
 
+
 @app.route('/users/<username>')
 def get_user(username):
     user = users.get(username)
     if user:
-        return jsonify(user)
+        ordered_user = OrderedDict([
+            ("username", user["username"]),
+            ("name", user["name"]),
+            ("age", user["age"]),
+            ("city", user["city"])
+        ])
+        return Response(json.dumps(ordered_user), mimetype='application/json')
     else:
         return jsonify({"error": "User not found"})
-    
+
+
 @app.route('/add_user', methods=['POST'])
 def add_user():
     data = request.get_json()
@@ -48,12 +74,24 @@ def add_user():
         return jsonify({"error": "Username already exists"})
 
     users[username] = {
+        "username": data.get('username', ''),
         "name": data.get('name', ''),
         "age": data.get('age', 0),
         "city": data.get('city', '')
     }
+    ordered_user = OrderedDict([
+                ("username", users[username]["username"]),
+                ("name", users[username]["name"]),
+                ("age", users[username]["age"]),
+                ("city", users[username]["city"])
+            ])
+    users[username] = dict(ordered_user)
+    response = {
+        "message": "User added successfully",
+        "user": ordered_user
+    }
+    return Response(json.dumps(response), mimetype='application/json')
 
-    return jsonify({"message": "User added successfully", "user": users[username]})
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
