@@ -10,13 +10,13 @@ class HttpServer(http.server.BaseHTTPRequestHandler):
 
     def do_GET(self):
         """Handle GET request."""
-        if self.path == "/":
+        if self.path == '/':
             self.send_response(200)
-            self.send_header("Content-type", "text/html")
+            self.send_header("Content-type", "text/plain")
             self.end_headers()
             self.wfile.write(b"Hello, this is a simple API!")
 
-        elif self.path == "/data":
+        elif self.path == '/data':
             self.send_response(200)
             self.send_header("Content-type", "application/json")
             self.end_headers()
@@ -24,25 +24,26 @@ class HttpServer(http.server.BaseHTTPRequestHandler):
             json_data = json.dumps(data)
             self.wfile.write(json_data.encode('utf-8'))
 
-        elif self.path == "/status":
+        elif self.path == '/status':
             self.send_response(200)
-            self.send_header("Content-type", "application/json")
+            self.send_header("Content-type", "text/plain")
             self.end_headers()
             self.wfile.write(b"OK")
 
-        elif self.path == "/info":
+        elif self.path == '/info':
             self.send_response(200)
             self.send_header("Content-type", "application/json")
             self.end_headers()
-            data = {"version": "1.0",
+            info = {"version": "1.0",
                     "description": "A simple API built with http.server"}
-            json_data = json.dumps(data)
+            json_data = json.dumps(info)
             self.wfile.write(json_data.encode('utf-8'))
 
         else:
             self.send_error(404, "Endpoint not found.")
-
-
+            self.send_response(404)
+            self.end_headers()
+            self.wfile.write(b"404 not found")    
 PORT = 8000
 
 with socketserver.TCPServer(("", PORT), HttpServer) as httpd:
