@@ -3,7 +3,7 @@
 -- auteur : BenBet21
 -- ============================================
 if [ $# -ne 1 ]; then
-  echo "Usage: $0 <database_name>"
+  echo "Usage: $0 <mysql>"
   exit 1
 fi
 DB_NAME="$1"
