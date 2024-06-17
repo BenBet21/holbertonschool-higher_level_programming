@@ -13,8 +13,4 @@ INSERT INTO second_table(id, name, score) VALUES
 (1, 'John', 10),
 (2, 'Alex', 3),
 (3, 'Bob', 14),
-(4, 'George', 8)
-(5, 'Benoit', 20)
-(5, 'Sandra', 30)
-(6, 'Erwann', 34)
-(7, 'Maureen', 36);
+(4, 'George', 8);
