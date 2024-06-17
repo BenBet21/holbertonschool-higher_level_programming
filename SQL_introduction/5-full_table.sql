@@ -3,7 +3,7 @@
 -- auteur : BenBet21 17/06/2024
 -- ============================================
 
-USE hbtn_0c_0
+USE information_schema;
 SELECT 
     COLUMN_NAME, 
     COLUMN_TYPE, 
@@ -12,5 +12,5 @@ SELECT
 FROM 
     COLUMNS 
 WHERE 
-    TABLE_SCHEMA = 'hbtn_0c_0' 
+    TABLE_SCHEMA = DATABASE() 
     AND TABLE_NAME = 'first_table';
