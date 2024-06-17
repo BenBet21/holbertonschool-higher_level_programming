@@ -2,5 +2,4 @@
 -- List Databases
 -- created by BenBet21 17/06/2024
 --========================================================
-
 SHOW DATABASES;
