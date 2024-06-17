@@ -3,4 +3,4 @@
 -- auteur : BenBet21 17/06/2024
 -- ============================================
 
-UPDATE second_table SET score = 10 WHERE name = 'Bob';
+DELETE FROM second_table WHERE score <= 5;
