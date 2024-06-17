@@ -3,14 +3,5 @@
 -- auteur : BenBet21 17/06/2024
 -- ============================================
 
-USE information_schema;
-SELECT 
-    COLUMN_NAME, 
-    COLUMN_TYPE, 
-    IS_NULLABLE, 
-    COLUMN_KEY 
-FROM 
-    COLUMNS 
-WHERE 
-    TABLE_SCHEMA = DATABASE() 
-    SHOW CREATE TABLE `first_table`;
+USE hbtn_0c_0;
+SHOW CREATE TABLE `first_table`;
