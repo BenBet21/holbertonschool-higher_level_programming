@@ -3,4 +3,4 @@
 -- auteur : BenBet21 17/06/2024
 -- ============================================
 
-SELECT COUNT (89) FROM first_table;
+SELECT COUNT(89) FROM first_table;
