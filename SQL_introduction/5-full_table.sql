@@ -3,5 +3,4 @@
 -- auteur : BenBet21 17/06/2024
 -- ============================================
 
-USE hbtn_0c_0;
-SHOW CREATE TABLE `first_table`;
+SHOW CREATE TABLE first_table;
