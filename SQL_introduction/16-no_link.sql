@@ -1,5 +1,5 @@
 -- ===========================================
--- Write a script that lists the number of records with the same score in the table
+-- Write a script that lists all records of the table second_table of the database 
 -- auteur : BenBet21 17/06/2024
 -- ============================================
 
