@@ -1,5 +1,5 @@
 -- ===========================================
--- Write a script that lists all rows of the table first_table
+-- Write a script that lists all records with a score >= 10
 -- auteur : BenBet21 17/06/2024
 -- ============================================
 
