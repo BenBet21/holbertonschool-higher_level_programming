@@ -3,4 +3,4 @@
 -- auteur : BenBet21 17/06/2024
 -- ============================================
 
-SELECT AVG(score) AS average_score FROM second_table;
+SELECT AVG(score) AS average FROM second_table;
