@@ -12,25 +12,29 @@ if __name__ == "__main__":
     password = sys.argv[2]
     db_name = sys.argv[3]
 
-    """
-    Connect to a MySQL server
-    and list all states in the database
-    using argv and the MySQLdb library
-    """
-    db = MySQLdb.connect(
-        host="localhost",
-        port=3306,
-        user=username,
-        passwd=password,
-        db=db_name)
+    def main():
+        """
+        Connect to a MySQL server
+        and list all states in the database
+        using argv and the MySQLdb library
+        """
+        db = MySQLdb.connect(
+            host="localhost",
+            port=3306,
+            user=username,
+            passwd=password,
+            db=db_name)
 
-    cursor = db.cursor()
+        cursor = db.cursor()
 
-    cursor.execute("SELECT * FROM states ORDER BY name ASC")
+        cursor.execute("SELECT * FROM states ORDER BY id ASC")
 
-    results = cursor.fetchall()
+        results = cursor.fetchall()
 
-    for row in results:
-        print(row)
+        for row in results:
+            print(row)
 
-    db.close()
+        db.close()
+
+if __name__ == "__main__":
+    main()
