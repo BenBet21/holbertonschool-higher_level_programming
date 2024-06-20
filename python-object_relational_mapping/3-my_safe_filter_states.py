@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """script that takes in an argument and/
-displays all values in the states table with format/
-injection possible"""
+displays all values in the states table/
+sans format pour éviter injection"""
 
 import MySQLdb
 import sys
@@ -19,9 +19,9 @@ if __name__ == "__main__":
     cursor.execute("""
         SELECT states.id, states.name
         FROM states
-        WHERE BINARY states.name = '{}'
+        WHERE BINARY states.name = %s
         ORDER BY states.id ASC
-    """.format(sys.argv[4]))
+    """(sys.argv[4]),)
 
     rows = cursor.fetchall()
     for row in cursor:
