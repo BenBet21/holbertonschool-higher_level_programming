@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-"""script that takes in an argument and displays all values in the states table"""
+"""script that takes in an argument and/
+displays all values in the states table"""
 
 import MySQLdb
 import sys
@@ -20,7 +21,7 @@ if __name__ == "__main__":
         WHERE BINARY states.name = '{}'
         ORDER BY states.id ASC
     """.format(sys.argv[4]))
-    
+
     rows = cursor.fetchall()
     for row in cursor:
         print(row)
