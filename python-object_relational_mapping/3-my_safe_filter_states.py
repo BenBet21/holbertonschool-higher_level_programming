@@ -21,7 +21,7 @@ if __name__ == "__main__":
         FROM states
         WHERE BINARY states.name = %s
         ORDER BY states.id ASC
-    """(sys.argv[4]),)
+    """, (sys.argv[4],))
 
     rows = cursor.fetchall()
     for row in cursor:
