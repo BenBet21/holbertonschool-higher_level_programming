@@ -5,9 +5,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    with open('python-server_side_rendering/items.json', 'r') as file:
-        data = json.load(file)
-    return render_template('index.html', items=data['items'])
+    return render_template('index.html')
 
 @app.route('/about')
 def about():
