@@ -4,8 +4,8 @@ import os
 
 def generate_invitations(template_content, attendees):
 
-        if not isinstance(template_content, str):
-                print("Error: template_content must be a string.")
+        if not isinstance(template_content, str) or template_content == "":
+                print("Error: template_content must be a string and cannot be empty.")
                 return
 
         if not isinstance(attendees, list) or not all(isinstance(attendee, dict) for attendee in attendees):
