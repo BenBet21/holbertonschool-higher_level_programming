@@ -49,29 +49,44 @@ def read_csv(file_name):
 def display_products():
     source = request.args.get('source')
     product_id = request.args.get('id', type=int)
-    
+    products = []
+    print(product_id)
+
     if source == 'json':
-        products = read_json('products.json')
+        try:
+            products = read_json('products.json')
+            print(products)
+        except FileNotFoundError:
+            return render_template('product_display.html', error='File not found')
     elif source == 'csv':
-        products = read_csv('products.csv')
-    elif source == 'sql':
-        conn = sqlite3.connect('products.db')
-        conn.row_factory = sqlite3.Row
-        cursor = conn.cursor()
-        if product_id:
-            cursor.execute('SELECT * FROM Products WHERE id = ?', (product_id,))
-        else:
-            cursor.execute('SELECT * FROM Products')
-        products = cursor.fetchall()
-        conn.close()
-        products = [dict(product) for product in products]
+        try:
+            products = read_csv('products.csv')
+            print(products)
+        except FileNotFoundError:
+            return render_template('product_display.html', error='File not found')
+    elif source in ['db', 'sql']:
+        try:
+            conn = sqlite3.connect('products.db')
+            conn.row_factory = sqlite3.Row
+            cursor = conn.cursor()
+            print(cursor)
+            if product_id:
+                cursor.execute('SELECT * FROM Products WHERE id = ?', (product_id,))
+            else:
+                cursor.execute('SELECT * FROM Products')
+            products = cursor.fetchall()
+            conn.close()
+            products = [dict(product) for product in products]
+        except sqlite3.Error:
+            return render_template('product_display.html', error='Database error')
     else:
         return render_template('product_display.html', error='Wrong source')
 
-    if product_id and source != 'sql':
+    if product_id:
         products = [product for product in products if product['id'] == product_id]
-        if not products:
-            return render_template('product_display.html', error='Product not found')
+
+    if not products:
+        return render_template('product_display.html', error='Product not found')
 
     return render_template('product_display.html', products=products)
 
