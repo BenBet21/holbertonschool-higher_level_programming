@@ -76,7 +76,9 @@ def display_products():
     return render_template('product_display.html', products=products)
 
 def create_database():
-    conn = sqlite3.connect('products.db')
+    base_dir = os.path.dirname(__file__)
+    db_path = os.path.join(base_dir, 'products.db')
+    conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS Products (
@@ -89,8 +91,8 @@ def create_database():
     cursor.execute('''
         INSERT OR IGNORE INTO Products (id, name, category, price)
         VALUES
-        (1, 'Laptop', 'Electronics', 799.99),
-        (2, 'Coffee Mug', 'Home Goods', 15.99)
+        (6, 'Laptop', 'Electronics', 799.99),
+        (7, 'Coffee Mug', 'Home Goods', 15.99)
     ''')
     conn.commit()
     conn.close()
