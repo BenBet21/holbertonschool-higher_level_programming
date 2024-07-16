@@ -54,7 +54,7 @@ def display_products():
         products = read_json('products.json')
     elif source == 'csv':
         products = read_csv('products.csv')
-    elif source in ['db', 'sql']:
+    elif source == 'sql':
         conn = sqlite3.connect('products.db')
         conn.row_factory = sqlite3.Row
         cursor = conn.cursor()
@@ -68,7 +68,7 @@ def display_products():
     else:
         return render_template('product_display.html', error='Wrong source')
 
-    if product_id and source not in ['db', 'sql']:
+    if product_id and source != 'sql':
         products = [product for product in products if product['id'] == product_id]
         if not products:
             return render_template('product_display.html', error='Product not found')
