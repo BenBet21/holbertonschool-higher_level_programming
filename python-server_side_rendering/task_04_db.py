@@ -84,6 +84,8 @@ def display_products():
 
     if product_id:
         products = [product for product in products if product['id'] == product_id]
+        if (products.__len__() < 1):
+            return render_template('product_display.html', error='Product not found')
 
     if not products:
         return render_template('product_display.html', error='Product not found')
